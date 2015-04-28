@@ -1,7 +1,10 @@
 {
   "name": "gaffa",
   "description": "A powerful, fast, and relatively small application framework.",
-  "author": "Kory Nunn <knunn187@gmail.com>",
+  "author": {
+    "name": "Kory Nunn",
+    "email": "knunn187@gmail.com"
+  },
   "tags": [
     "DOM"
   ],
@@ -59,5 +62,27 @@
       "ff/13",
       "chrome/20"
     ]
-  }
+  },
+  "gitHead": "b1e7a603b92e38537cf27bc797a40fa0b6fb1501",
+  "homepage": "https://github.com/gaffa-tape/gaffa-js",
+  "_id": "gaffa@1.22.2",
+  "_shasum": "5726a5b67db62ba9ba8931b24846a823a6e050a1",
+  "_from": "gaffa@1.22.2",
+  "_npmVersion": "1.4.28",
+  "_npmUser": {
+    "name": "korynunn",
+    "email": "knunn187@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "korynunn",
+      "email": "knunn187@gmail.com"
+    }
+  ],
+  "dist": {
+    "shasum": "5726a5b67db62ba9ba8931b24846a823a6e050a1",
+    "tarball": "http://npm.yoik.net/gaffa/-/gaffa-1.22.2.tgz"
+  },
+  "directories": {},
+  "_resolved": "https://npm.yoik.net/gaffa/-/gaffa-1.22.2.tgz"
 }

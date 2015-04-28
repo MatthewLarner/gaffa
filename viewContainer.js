@@ -1,14 +1,11 @@
 var createSpec = require('spec-js'),
     Bindable = require('./bindable'),
     View = require('./view'),
-    initialiseViewItem = require('./initialiseViewItem'),
     removeViews = require('./removeViews'),
-    requestInsersion = require('./requestInsersion'),
-    arrayProto = Array.prototype;
+    requestInsersion = require('./requestInsersion');
 
 function ViewContainer(viewContainerDescription){
     Bindable.call(this);
-    var viewContainer = this;
 
     this._deferredViews = [];
 
@@ -17,15 +14,17 @@ function ViewContainer(viewContainerDescription){
     }
 
     if(viewContainerDescription instanceof Array){
-        viewContainer.add(viewContainerDescription);
+        this.push.apply(this, viewContainerDescription);
     }
 
     this.on('bind', function(parent){
-        for(var i = 0; i < this.length; i++){
-            this.add(this[i], i);
+        if(parent.deferred) {
+            for(var i = 0; i < this.length; i++){
+                this.deferredAdd(this[i], i);
+            }
+        } else {
+            this.add(this);
         }
-
-        return this;
     });
 }
 ViewContainer = createSpec(ViewContainer, Array);
@@ -34,9 +33,6 @@ for(var key in Bindable.prototype){
 }
 ViewContainer.prototype.constructor = ViewContainer;
 ViewContainer.prototype._render = true;
-ViewContainer.prototype.getPath = function(){
-    return getItemPath(this);
-};
 
 /*
     ViewContainers handle their own array state.
@@ -111,9 +107,7 @@ ViewContainer.prototype.abortDeferredAdd = function(){
 };
 ViewContainer.prototype.render = function(){
     this._render = true;
-    for(var i = 0; i < this.length; i++){
-        this.deferredAdd(this[i], i);
-    }
+    this.add(this);
 };
 ViewContainer.prototype.derender = function(){
     this._render = false;
